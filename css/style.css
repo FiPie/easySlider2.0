@@ -1,0 +1,17 @@
+.container {
+  overflow: hidden;
+  margin: auto;
+}
+ h2 {
+   text-align: center;
+ }
+ .pager {
+   text-align: center;
+ }
+.pagerButtons {
+  display: inline;
+}
+.buttons {
+  margin: auto;
+  text-align: center;
+}
