@@ -1,4 +1,6 @@
 # easySlider2.0
-modified version of previous easySlider
-To run this: download the project zip file, unpack it and open the index.html in the browser (to open just double click it).
-Note: you should preserve the project file structure
+modified version of the previous easySlider.
+
+To run: download the project zip file, unzip it and open the index.html file in your browser (to open, double-click it).
+\n
+Note: Keep the project file structure
