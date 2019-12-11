@@ -1,6 +1,7 @@
 var images = ["01.png", "02.png", "03.png"];
 var current = 0;
-var imageWidth, imageHeight, timeout, nextImg, allImagesWidth;
+var imageWidth, imageHeight, timeout, allImagesWidth;
+
 
 //Onload initial setup
 $(function() {
@@ -9,16 +10,20 @@ $(function() {
   setImagesSize();
   //Next we're loading all the images
   loadImages();
-
+  //The slider will adjust its size to the window resizing event
   $(window).resize(function() {
     setImagesSize();
   });
+
 });
 
+
 function setImagesSize() {
-  //Tries to fastforward the current animation to it's next complete step and then continues
-  $('.images').stop(true, true);
-  console.log('setImagesSize() imageWidth: ' + imageWidth);
+  //Attempt to fastforward the current animation (if running) to it's next complete step and then continues
+  if ($('.images').is(':animated')) {
+    console.log('.images is animated');
+    $('.images').stop(true, true);
+  }
   //Normalized images width equal to the column element width
   imageWidth = $('.fluid-container').width();
   $('.images').append("<img id='sampleImg' src='images/" + images[0] + "'>");
@@ -56,14 +61,12 @@ function loadImages() {
     $('.pagerList').append(li);
   }
 
-
   //Initial configuration of button events
   $('#stop').prop('disabled', true);
   $('#play').prop('disabled', false);
   $('#play').on('click', play);
   $('#prev').on('click', prev);
   $('#next').on('click', next);
-  //play();
 }
 
 function prev() {
@@ -89,11 +92,11 @@ function play() {
   $('#play').off();
   $('#stop').off();
 
-  $('#stop').on('click', stop);
+  $('#stop').on('click', pause);
   timeout = setInterval('next()', 2000);
 }
 
-function stop() {
+function pause() {
   $('.images').stop(true, true);
   $('#stop').off();
   $('#stop').prop('disabled', true);
