@@ -23,7 +23,7 @@ function setImagesSize() {
   }
 
   //Normalized images width equal to the column element width
-  imageWidth = $('.fluid-container').width();
+  imageWidth = $('.slider-container').width();
   $('.images').append("<img id='sampleImg' src='images/" + images[0] + "'>");
   //The sample image sets the height standard for the other images
   $('#sampleImg').width(imageWidth);
@@ -32,9 +32,12 @@ function setImagesSize() {
     imageHeight = $('#sampleImg').height();
     allImagesWidth = ((imageWidth * images.length));
     //Styling of the image slider elements
-    $('.fluid-container').css({
+    $('.slider-container').css({
       'width': imageWidth,
       'height': imageHeight
+    });
+    $('.pagination-container').css({
+      'width': imageWidth
     });
     $('.images').css({
       'width': allImagesWidth,
@@ -59,10 +62,9 @@ function loadImages() {
     var img = "<img class='image rounded' id='i" + (i + 1) + "' src='images/" + images[i] + "'>";
     $('.images').append(img);
     // Produces the pagination buttons to the coresponding images
-    var li = "<li class='page-item'><a class='page-link' onclick='goToPage(" + i + ")'>" + (i + 1) + "</a></li>";
+    var li = "<li id='" + (i + 1) + "' class='page-item col-sm-0.5 col-xs-0.25'><a class='page-link' onclick='goToPage(" + i + ")'>" + (i + 1) + "</a></li>";
     $('.pagerList').append(li);
   }
-
 
   //Initial configuration of button events
   $('#stop').prop('disabled', true);
@@ -70,11 +72,14 @@ function loadImages() {
   $('#play').on('click', play);
   $('#prev').on('click', prev);
   $('#next').on('click', next);
+  $('#1').addClass('activated');
 }
 
 function prev() {
   current = (current - 1 + images.length) % images.length;
   console.log('prev() current:' + current);
+  $('.activated').removeClass('activated');
+  $('#' + (current + 1)).addClass('activated');
   $('.images').animate({
     'margin-left': -(current * imageWidth)
   }, 800, 'swing');
@@ -83,6 +88,8 @@ function prev() {
 function next() {
   current = (current + 1 + images.length) % images.length;
   console.log('next() current:' + current);
+  $('.activated').removeClass('activated');
+  $('#' + (current + 1)).addClass('activated');
   $('.images').animate({
     'margin-left': -(current * imageWidth)
   }, 800, 'swing');
@@ -115,6 +122,8 @@ function goToPage(number) {
   $('.images').stop(true, true);
   $('.images').animate({
     'margin-left': -(current * imageWidth)
-  }, 800, 'swing');
+  }, 600, 'swing');
+  $('.activated').removeClass('activated');
+  $('#' + (current + 1)).addClass('activated');
   console.log('goToPage() current=' + current);
 };
