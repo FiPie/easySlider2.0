@@ -1,4 +1,13 @@
-.container {
+html,
+body {
+    height: 100vh;
+    font-family: sans-serif;
+    font-size: 1em;
+    background: #007bff;
+    background: linear-gradient(to right, #0062E6, #33AEFF);
+
+}
+.fluid-container {
   overflow: hidden;
   margin: auto;
 }
@@ -14,4 +23,12 @@
 .buttons {
   margin: auto;
   text-align: center;
+}
+.rounded-lg {
+  border-radius: 1rem;
+}
+.pagination > li a {
+  min-width: 2.5em;
+  text-align: center;
+  text-shadow: 1px 1px 1px lightgrey;
 }

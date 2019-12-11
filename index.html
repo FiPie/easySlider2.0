@@ -4,7 +4,14 @@
 <head>
   <meta charset="utf-8">
   <title>Easy Slider 2.0</title>
+  <!-- Jquery -->
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <!-- Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Bootstrap bundle -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+  <!-- Fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 
@@ -13,23 +20,43 @@
 
 <body>
 
-  <h2>jQuery driven phenomenal image slider 2.0 </h2>
-
   <div class="container">
-    <div class="images"></div>
-  </div>
 
-  <div class="pager">
-    <ul class="pagerList"></ul>
-  </div>
+    <div class="row mt-4 text-justify text-white">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="display-5">jQuery driven phenomenal image slider 2.0 </h2>
+        <p class="text-center"> This is a text sample to check the aligning bootstrap classes</p>
+      </div>
+    </div>
 
-  <div class="buttons">
-    <button id="play">Play</button>
-    <button id="stop">Stop</button>
-    <button id="prev">Prev</button>
-    <button id="next">Next</button>
-  </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-10 col-sm-12 mx-auto px-0 fluid-container">
+        <div class="images">
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-lg-8 col-md-10 col-sm-12 mx-auto px-0">
+        <nav aria-label="Page navigation">
+          <ul class="pagination pagination-sm justify-content-center pagerList">
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="buttons">
+          <button id="play">Play</button>
+          <button id="stop">Stop</button>
+          <button id="prev">Prev</button>
+          <button id="next">Next</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
   <script src="js/slider.js"></script>
 </body>
 

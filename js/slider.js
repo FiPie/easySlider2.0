@@ -1,47 +1,61 @@
 var images = ["01.png", "02.png", "03.png"];
 var current = 0;
-var imageWidth, imageHeight, timeout, imageRatio, nextImg, allImagesWidth;
+var imageWidth, imageHeight, timeout, nextImg, allImagesWidth;
 
 //Onload initial setup
 $(function() {
 
+  //Initial setup of images size
+  setImagesSize();
+  //Next we're loading all the images
+  loadImages();
 
-  //Initial normalized image width of approximately 49.5% of the user view port width
-  imageWidth = 49.5;
-  $('body').append("<img id='sampleImg' src='images/" + images[0] + "'>");
-  //The first image sets the height standard for the other images
-  $('#sampleImg').width(imageWidth + 'vw');
+  $(window).resize(function() {
+    setImagesSize();
+  });
+});
+
+function setImagesSize() {
+  //Tries to fastforward the current animation to it's next complete step and then continues
+  $('.images').stop(true, true);
+  console.log('setImagesSize() imageWidth: ' + imageWidth);
+  //Normalized images width equal to the column element width
+  imageWidth = $('.fluid-container').width();
+  $('.images').append("<img id='sampleImg' src='images/" + images[0] + "'>");
+  //The sample image sets the height standard for the other images
+  $('#sampleImg').width(imageWidth);
   $('#sampleImg').on('load', function() {
     imageWidth = $('#sampleImg').width();
     imageHeight = $('#sampleImg').height();
     allImagesWidth = ((imageWidth * images.length));
+    //Styling of the image slider elements
+    $('.fluid-container').css({
+      'width': imageWidth,
+      'height': imageHeight
+    });
+    $('.images').css({
+      'width': allImagesWidth,
+      'height': imageHeight
+    });
+    $('.image').css({
+      'width': imageWidth,
+      'height': imageHeight
+    });
     //After setting the standards, the sample image is removed
     $('#sampleImg').remove();
-    //Next we're loading all the images
-    loadImages();
   });
-});
+}
 
 function loadImages() {
   for (var i = 0; i < images.length; i++) {
-    var img = "<img class='image' id='i" + (i + 1) + "' src='images/" + images[i] + "'>";
+    // Produces the img elements with sources pointing to the images
+    var img = "<img class='image rounded' id='i" + (i + 1) + "' src='images/" + images[i] + "'>";
     $('.images').append(img);
-    var li = "<li class='pagerButtons'><button onclick='goToPage(" + i + ")'>" + (i + 1) + "</button></li>";
+    // Produces the pagination buttons to the coresponding images
+    var li = "<li class='page-item'><a class='page-link' onclick='goToPage(" + i + ")'>" + (i + 1) + "</a></li>";
     $('.pagerList').append(li);
   }
-  //Styling of the image slider elements
-  $('.container').css({
-    'width': imageWidth,
-    'height': imageHeight
-  });
-  $('.images').css({
-    'width': allImagesWidth,
-    'height': imageHeight
-  });
-  $('.image').css({
-    'width': imageWidth,
-    'height': imageHeight
-  });
+
 
   //Initial configuration of button events
   $('#stop').prop('disabled', true);
