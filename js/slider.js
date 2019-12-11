@@ -2,7 +2,6 @@ var images = ["01.png", "02.png", "03.png"];
 var current = 0;
 var imageWidth, imageHeight, timeout, allImagesWidth;
 
-
 //Onload initial setup
 $(function() {
 
@@ -14,9 +13,7 @@ $(function() {
   $(window).resize(function() {
     setImagesSize();
   });
-
 });
-
 
 function setImagesSize() {
   //Attempt to fastforward the current animation (if running) to it's next complete step and then continues
@@ -24,6 +21,7 @@ function setImagesSize() {
     console.log('.images is animated');
     $('.images').stop(true, true);
   }
+
   //Normalized images width equal to the column element width
   imageWidth = $('.fluid-container').width();
   $('.images').append("<img id='sampleImg' src='images/" + images[0] + "'>");
@@ -49,6 +47,10 @@ function setImagesSize() {
     //After setting the standards, the sample image is removed
     $('#sampleImg').remove();
   });
+  //This beautiful line of code below will make the resizing of the currently displayed image (animated or not) keep up with the window resizing event, even if caught in the middle of the animation
+  $('.images').css({
+    'margin-left': -(current * imageWidth)
+  });
 }
 
 function loadImages() {
@@ -60,6 +62,7 @@ function loadImages() {
     var li = "<li class='page-item'><a class='page-link' onclick='goToPage(" + i + ")'>" + (i + 1) + "</a></li>";
     $('.pagerList').append(li);
   }
+
 
   //Initial configuration of button events
   $('#stop').prop('disabled', true);
