@@ -1,4 +1,4 @@
-var images = ["01.png", "02.png", "03.png"];
+var images = ["01.png", "02.png", "03.png", "04.png", "05.png", "06.png", "07.png", "08.png", "09.png", "10.png", "11.png", "12.png"];
 var current = 0;
 var imageWidth, imageHeight, timeout, allImagesWidth;
 
@@ -118,7 +118,15 @@ function pause() {
 }
 
 function goToPage(number) {
-  $('#stop').trigger('click');
+  //If the animation was running when this function was called, the animation will be paused for 3 seconds before restarting
+  if ($('.images').is(':animated')) {
+    console.log('element .images is animated');
+    $('#stop').trigger('click');
+    //Restarting the animation after 3 seconds by triggering the 'click' event which calls the play() function
+    setTimeout(function() {
+      $('#play').trigger('click');
+    }, 3000);
+  }
   current = number;
   $('.images').stop(true, true);
   $('.images').animate({
@@ -127,8 +135,4 @@ function goToPage(number) {
   $('.activated').removeClass('activated');
   $('#' + (current + 1)).addClass('activated');
   console.log('goToPage() current=' + current);
-  setTimeout(function() {
-    $('#play').trigger('click');
-  }, 2000);
-
 };
