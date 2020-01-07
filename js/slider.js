@@ -15,6 +15,7 @@ $(function() {
   });
 });
 
+//This function standardizes the dimensions of all the photos
 function setImagesSize() {
   //Attempt to fastforward the current animation (if running) to it's next complete step and then continues
   if ($('.images').is(':animated')) {
@@ -56,6 +57,7 @@ function setImagesSize() {
   });
 }
 
+//Loads all the photos into the correct HTML document container from the provided list of photo file names in form of an array 
 function loadImages() {
   for (var i = 0; i < images.length; i++) {
     // Produces the img elements with sources pointing to the images

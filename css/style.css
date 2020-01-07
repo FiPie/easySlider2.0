@@ -29,6 +29,7 @@ h2 {
   position: absolute;
   left: 50%;
   top: 95%;
+  /* moves an element from its current position (according to the parameters given for the X-axis and the Y-axis). */
   transform: translate(-50%, -50%);
   z-index: 100;
 }
@@ -39,6 +40,7 @@ h2 {
 
 .toolicons:hover {
   color: rgba(255, 255, 255, 0.99);
+  /* gives the icons a nice white surounding glow upon mouse hovering */
   text-shadow: 1px 1px 25px white;
 }
 
