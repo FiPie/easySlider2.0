@@ -77,6 +77,7 @@ function loadImages() {
   $('#1').addClass('activated');
 }
 
+//Changes the photo currently displayed in the 'slider-container' element to the previous one in an animated way
 function prev(event) {
   //Detects the cause of function call, if it's due to the user's 'click' and the animation is running => the animation pauses for 3 secs
   if (event && isRunning === 1) {
@@ -95,6 +96,7 @@ function prev(event) {
   }, 800, 'swing');
 }
 
+//Changes the photo currently displayed in the 'slider-container' element to the next one in an animated way
 function next(event) {
   //Detects the cause of function call, if it's due to the user's 'click' and the animation is running => the animation pauses for 3 secs
   if (event && isRunning === 1) {
@@ -113,6 +115,7 @@ function next(event) {
   }, 800, 'swing');
 }
 
+// Starts the photo slideshow and protects the play / stop buttons against repeated pressing.
 function play() {
   isRunning = 1;
   $('.images').stop(true, true);
@@ -125,6 +128,7 @@ function play() {
   timeout = setInterval('next()', 2000);
 }
 
+// Stops the photo slideshow and protects the play / stop buttons against repeated pressing.
 function pause() {
   isRunning = 0;
   $('.images').stop(true, true);
@@ -137,6 +141,7 @@ function pause() {
   clearInterval(timeout);
 }
 
+// Changes the view of the currently displayed photo to a photo corresponding to the pagination button
 function goToPage(number) {
   var wasRunning = 0;
   //If the animation was running when this function was called, the animation will be paused for 3 seconds before restarting
