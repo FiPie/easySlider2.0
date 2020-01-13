@@ -15,7 +15,6 @@ $(function() {
   });
 });
 
-//This function standardizes the dimensions of all the photos
 function setImagesSize() {
   //Attempt to fastforward the current animation (if running) to it's next complete step and then continues
   if ($('.images').is(':animated')) {
@@ -25,7 +24,7 @@ function setImagesSize() {
 
   //Normalized images width equal to the column element width
   imageWidth = $('.slider-container').width();
-  $('.images').append("<img id='sampleImg' src='images/" + images[0] + "'>");
+  $('.images').append("<img id='sampleImg' src='../images/" + images[0] + "'>");
   //The sample image sets the height standard for the other images
   $('#sampleImg').width(imageWidth);
   $('#sampleImg').on('load', function() {
@@ -57,11 +56,10 @@ function setImagesSize() {
   });
 }
 
-//Loads all the photos into the correct HTML document container from the provided list of photo file names in form of an array 
 function loadImages() {
   for (var i = 0; i < images.length; i++) {
     // Produces the img elements with sources pointing to the images
-    var img = "<img class='image rounded' id='i" + (i + 1) + "' src='images/" + images[i] + "'>";
+    var img = "<img class='image rounded' id='i" + (i + 1) + "' src='../images/" + images[i] + "'>";
     $('.images').append(img);
     // Produces the pagination buttons to the coresponding images
     var li = "<li id='" + (i + 1) + "' class='page-item col-sm-0.5 col-xs-0.25'><a class='page-link' onclick='goToPage(" + i + ")'>" + (i + 1) + "</a></li>";
@@ -77,7 +75,6 @@ function loadImages() {
   $('#1').addClass('activated');
 }
 
-//Changes the photo currently displayed in the 'slider-container' element to the previous one in an animated way
 function prev(event) {
   //Detects the cause of function call, if it's due to the user's 'click' and the animation is running => the animation pauses for 3 secs
   if (event && isRunning === 1) {
@@ -96,7 +93,6 @@ function prev(event) {
   }, 800, 'swing');
 }
 
-//Changes the photo currently displayed in the 'slider-container' element to the next one in an animated way
 function next(event) {
   //Detects the cause of function call, if it's due to the user's 'click' and the animation is running => the animation pauses for 3 secs
   if (event && isRunning === 1) {
@@ -115,7 +111,6 @@ function next(event) {
   }, 800, 'swing');
 }
 
-// Starts the photo slideshow and protects the play / stop buttons against repeated pressing.
 function play() {
   isRunning = 1;
   $('.images').stop(true, true);
@@ -128,7 +123,6 @@ function play() {
   timeout = setInterval('next()', 2000);
 }
 
-// Stops the photo slideshow and protects the play / stop buttons against repeated pressing.
 function pause() {
   isRunning = 0;
   $('.images').stop(true, true);
@@ -141,7 +135,6 @@ function pause() {
   clearInterval(timeout);
 }
 
-// Changes the view of the currently displayed photo to a photo corresponding to the pagination button
 function goToPage(number) {
   var wasRunning = 0;
   //If the animation was running when this function was called, the animation will be paused for 3 seconds before restarting
